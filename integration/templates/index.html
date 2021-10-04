@@ -1,0 +1,51 @@
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+<div class="container" style="margin-top:2%">
+    <div class="card">
+        <div class="card-header">
+            Boostup Project 
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Hubspot Integration</h4>
+            <p class="card-text">This is a project that integrate the CMS Hubspot with a simple django application</p>
+            <p class="card-text">We have two features:</p>
+            <div class="card-group">
+                <div class="card">
+                    <div class="card-body" id="admin">
+                        <h4 class="card-title">Admin</h4>
+                        <p class="card-text">This is a feature of django that alow you to do operations with the models that you create in the application</p>
+                        <p class="card-text">In this app we could access it by clicking the Admin button or just adding /admin in the URL. And also if you are authenticated you could 
+                        pull the <strong>Deals</strong> from <strong>Hubspot</strong></p>
+                        <a href="/admin" class="btn btn-outline-primary">Admin</a>
+                        {% if is_token_valid %}
+                            <a href="/pullDeals/{{access_token}}" class="btn btn-outline-primary">Pull Deals</a>
+                        {% endif %}
+                        
+                    </div>
+                </div>
+                <div class="card" id="auth">
+                    <div class="card-body">
+                        <h4 class="card-title">OAuth</h4>
+                        <p class="card-text">This application have a logic that allow you to do a safe authentication on Hubspot with Auth 0</p>
+                        <p class="card-text">Clicking in Auth you will be redirecting to Hubspot middleware that after select an account the apllication will get a token to interact with the hubspot API</p>
+                        <a href="https://app.hubspot.com/oauth/authorize?client_id=2f741427-b090-4872-852c-d9246b7bac5b&redirect_uri=http://localhost:8000&scope=crm.objects.contacts.read%20crm.schemas.contacts.read%20crm.objects.companies.read%20crm.objects.deals.read%20crm.schemas.deals.read%20crm.objects.owners.read" class="btn btn-outline-primary">Authenticate</a>
+                        {% if token_error != "" %}
+                            <p>{{token_error}}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>                
+        </div>
+        <div class="card-footer text-muted">
+            Developed with <i class="fa fa-heart" aria-hidden="true" style="color:red"></i>    by <a href="https://www.linkedin.com/in/pablo-cordoba-123ab8109/" target="_blank">Pablo Cordoba</a>
+        </div>
+    </div>
+</div>
