@@ -80,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'BoostUpIntegraiton',
-        'USER': 'root',
-        'PASSWORD': '15561000',
+        'USER': '',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306',
         #'NAME': BASE_DIR / 'db.sqlite3',
